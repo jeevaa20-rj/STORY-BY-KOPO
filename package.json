@@ -1,0 +1,35 @@
+{
+  "name": "story-by-kopi",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sanity/image-url": "^2.0.3",
+    "@sanity/vision": "^6.16.0",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.544.0",
+    "next": "^16.3.6",
+    "next-sanity": "^13.3.4",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "sanity": "^6.16.0",
+    "styled-components": "^6.1.19"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "eslint": "^9.36.0",
+    "eslint-config-next": "^16.3.6",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.9.2"
+  }
+}
