@@ -9,7 +9,7 @@ import { getAbout } from "@/lib/sanity";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Meet the photographer behind Story by Kopi and discover the philosophy behind the photographs.",
+  description: "Meet the photographer  Story by Kopi and discover the philosophy behind the photographs.",
 };
 
 export default async function AboutPage() {
