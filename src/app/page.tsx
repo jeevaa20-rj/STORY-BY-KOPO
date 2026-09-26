@@ -66,7 +66,7 @@ export default async function Home() {
         <div className="shell grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-24">
           <Reveal className="relative">
             <div className="relative aspect-[4/5] max-w-[620px] overflow-hidden">
-              <Image src="/images/quiet-moment.png" alt="Newlyweds in a quiet moment beside flowing curtains" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+              <Image src="/images/wedabi.jpg" alt="Newlyweds celebrating together beneath hanging lights" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
             </div>
             <div className="absolute -bottom-8 -right-3 grid size-32 place-items-center rounded-full border border-copper/50 bg-ink text-center font-serif text-sm italic text-copper-light sm:-right-9 sm:size-40">
               Honest<br />by nature<br />artful by choice
