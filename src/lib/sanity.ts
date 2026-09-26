@@ -5,6 +5,7 @@ import {
   type AboutContent,
   type GalleryCategory,
   type GalleryImage,
+  type HighlightVideo,
   type SiteSettings,
   type Story,
 } from "@/lib/data";
@@ -40,6 +41,12 @@ type SanityStory = {
   description?: string;
   coverImage?: SanityImage;
   gallery?: SanityImage[];
+  videoTitle?: string;
+  facebookVideoUrl?: string;
+  teaserVideoUrl?: string;
+  videoPoster?: SanityImage;
+  videoCaption?: string;
+  featuredVideo?: boolean;
 };
 
 const storiesQuery = `*[_type == "event"] | order(date desc) {
@@ -51,8 +58,88 @@ const storiesQuery = `*[_type == "event"] | order(date desc) {
   location,
   description,
   coverImage { alt, cloudinaryPublicId, asset->{url, metadata{dimensions}} },
-  gallery[] { alt, cloudinaryPublicId, asset->{url, metadata{dimensions}} }
+  gallery[] { alt, cloudinaryPublicId, asset->{url, metadata{dimensions}} },
+  videoTitle,
+  facebookVideoUrl,
+  teaserVideoUrl,
+  videoPoster { alt, asset->{url, metadata{dimensions}} },
+  videoCaption,
+  featuredVideo
 }`;
+
+const galleryCategories: GalleryCategory[] = [
+  "Wedding",
+  "Pre-wedding",
+  "Portrait",
+  "Engagement",
+  "Events",
+  "Videography",
+];
+
+function normalizeCategory(category?: string): GalleryCategory {
+  if (category === "Wedding Films") return "Videography";
+  return galleryCategories.includes(category as GalleryCategory)
+    ? (category as GalleryCategory)
+    : "Wedding";
+}
+
+function safeHttpsUrl(value?: string): string | undefined {
+  if (!value) return undefined;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.toString() : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function safeFacebookUrl(value?: string): string | undefined {
+  const normalized = safeHttpsUrl(value);
+  if (!normalized) return undefined;
+  const hostname = new URL(normalized).hostname.toLowerCase();
+  return hostname === "facebook.com" ||
+    hostname.endsWith(".facebook.com") ||
+    hostname === "fb.watch"
+    ? normalized
+    : undefined;
+}
+
+function normalizeHighlightVideo(
+  story: SanityStory,
+  coverImage: GalleryImage,
+  category: GalleryCategory,
+): HighlightVideo | undefined {
+  const facebookVideoUrl = safeFacebookUrl(story.facebookVideoUrl);
+  const teaserCandidate = safeHttpsUrl(story.teaserVideoUrl);
+  const teaserHostname = teaserCandidate
+    ? new URL(teaserCandidate).hostname.toLowerCase()
+    : "";
+  const teaserVideoUrl = teaserHostname === "facebook.com" ||
+    teaserHostname.endsWith(".facebook.com") ||
+    teaserHostname === "fb.watch"
+    ? undefined
+    : teaserCandidate;
+
+  if (!facebookVideoUrl && !teaserVideoUrl) return undefined;
+
+  const poster = story.videoPoster?.asset?.url
+    ? normalizeImage(story.videoPoster, `${story._id}-video-poster`, category)
+    : coverImage;
+
+  return {
+    title: story.videoTitle?.trim() || `${story.title} — Highlight Film`,
+    facebookVideoUrl,
+    teaserVideoUrl,
+    poster: {
+      src: poster.src,
+      alt: poster.alt,
+      width: poster.width,
+      height: poster.height,
+    },
+    caption: story.videoCaption?.trim() || undefined,
+    featuredVideo: Boolean(story.featuredVideo),
+  };
+}
 
 function normalizeImage(image: SanityImage | undefined, id: string, category: GalleryCategory): GalleryImage {
   const width = image?.asset?.metadata?.dimensions?.width || 1600;
@@ -72,7 +159,8 @@ function normalizeImage(image: SanityImage | undefined, id: string, category: Ga
 }
 
 function normalizeStory(story: SanityStory): Story {
-  const category = (story.category || "Wedding") as GalleryCategory;
+  const category = normalizeCategory(story.category);
+  const coverImage = normalizeImage(story.coverImage, `${story._id}-cover`, category);
   return {
     _id: story._id,
     title: story.title,
@@ -81,10 +169,11 @@ function normalizeStory(story: SanityStory): Story {
     date: story.date || new Date().toISOString(),
     location: story.location || "Location available on request",
     description: story.description || "A story told in honest, unhurried frames.",
-    coverImage: normalizeImage(story.coverImage, `${story._id}-cover`, category),
+    coverImage,
     gallery: (story.gallery || []).map((image, index) =>
       normalizeImage(image, `${story._id}-${index}`, category),
     ),
+    highlightVideo: normalizeHighlightVideo(story, coverImage, category),
   };
 }
 

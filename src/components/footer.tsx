@@ -11,7 +11,7 @@ export async function Footer() {
         <div className="grid gap-14 pb-16 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <Logo light />
-            <p className="mt-7 max-w-sm text-sm leading-7 text-white/55">Honest photographs for the moments you will want to return to, long after the day has passed.</p>
+            <p className="mt-7 max-w-sm text-sm leading-7 text-white/55">Honest photographs and films for the moments you will want to return to, long after the day has passed.</p>
           </div>
           <div>
             <p className="eyebrow mb-5 text-white/40">Explore</p>

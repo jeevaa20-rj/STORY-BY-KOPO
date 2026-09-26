@@ -5,7 +5,7 @@ export async function WhatsAppButton() {
   const siteDetails = await getSiteSettings();
   if (!siteDetails.whatsapp) return null;
 
-  const text = encodeURIComponent("Hello Story by Kopi, I'd love to ask about a photography session.");
+  const text = encodeURIComponent("Hello Story by Kopi, I'd love to ask about photography or videography.");
   return (
     <a
       href={`https://wa.me/${siteDetails.whatsapp}?text=${text}`}

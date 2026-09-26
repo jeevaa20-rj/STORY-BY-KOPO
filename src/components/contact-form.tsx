@@ -72,6 +72,15 @@ export function ContactForm() {
         <input id="contact-event-date" type="date" name="eventDate" />
       </div>
       <div className="field sm:col-span-2">
+        <label htmlFor="contact-service">Service</label>
+        <select id="contact-service" name="service" defaultValue="">
+          <option value="">Choose a service (optional)</option>
+          <option value="Photography">Photography</option>
+          <option value="Videography">Videography</option>
+          <option value="Photography + Videography">Photography + Videography</option>
+        </select>
+      </div>
+      <div className="field sm:col-span-2">
         <label htmlFor="contact-message">Tell us about your story *</label>
         <textarea id="contact-message" name="message" required maxLength={5000} rows={5} placeholder="Where, when, and what matters most to you?" />
       </div>

@@ -20,6 +20,7 @@ export async function POST(request: Request) {
   const email = getText(formData.get("email"));
   const phone = getText(formData.get("phone"));
   const eventDate = getText(formData.get("eventDate"));
+  const service = getText(formData.get("service"));
   const message = getText(formData.get("message"));
   const website = getText(formData.get("website"));
 
@@ -62,6 +63,14 @@ export async function POST(request: Request) {
     );
   }
 
+  const allowedServices = ["Photography", "Videography", "Photography + Videography"];
+  if (service && !allowedServices.includes(service)) {
+    return NextResponse.json(
+      { ok: false, error: "Choose a valid photography or videography service." },
+      { status: 422 },
+    );
+  }
+
   const formspreeEndpoint = process.env.FORMSPREE_ENDPOINT;
 
   if (!formspreeEndpoint) {
@@ -95,7 +104,14 @@ export async function POST(request: Request) {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email, phone, eventDate, message }),
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        eventDate,
+        message,
+        ...(service ? { service } : {}),
+      }),
     });
 
     if (!response.ok) {

@@ -53,6 +53,7 @@ a {
 
 button,
 input,
+select,
 textarea {
   font: inherit;
 }
@@ -390,6 +391,7 @@ button {
   gap: 0.65rem;
 }
 
+.field > label,
 .field > span {
   font-size: 0.61rem;
   font-weight: 600;
@@ -398,6 +400,7 @@ button {
 }
 
 .field input,
+.field select,
 .field textarea {
   width: 100%;
   border: 0;
@@ -412,8 +415,23 @@ button {
 }
 
 .field input:focus,
+.field select:focus,
 .field textarea:focus {
   border-color: var(--copper);
+}
+
+.field select {
+  appearance: none;
+  cursor: pointer;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+    linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+  background-position:
+    calc(100% - 0.9rem) calc(50% - 1px),
+    calc(100% - 0.6rem) calc(50% - 1px);
+  background-repeat: no-repeat;
+  background-size: 0.32rem 0.32rem, 0.32rem 0.32rem;
+  padding-right: 2rem;
 }
 
 .field textarea {
@@ -425,6 +443,78 @@ button {
   align-items: center;
   gap: 0.9rem;
   color: rgb(23 23 20 / 0.7);
+}
+
+.highlight-film-section {
+  overflow: hidden;
+  background: var(--warm-white);
+  padding-block: clamp(5rem, 9vw, 9rem);
+}
+
+.highlight-film-card {
+  display: grid;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 0%, rgb(156 96 67 / 0.24), transparent 34rem),
+    var(--ink);
+  color: var(--ivory);
+}
+
+.highlight-film-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2.25rem, 6vw, 5.5rem);
+}
+
+.highlight-film-frame {
+  position: relative;
+  min-height: 21rem;
+  overflow: hidden;
+  background: #090908;
+}
+
+.highlight-film-frame::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 55%, rgb(0 0 0 / 0.34));
+  content: "";
+  pointer-events: none;
+}
+
+.highlight-film-frame > a:focus-visible {
+  outline-color: #e7b69b;
+  outline-offset: -6px;
+}
+
+.highlight-film-play {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgb(255 255 255 / 0.35);
+  background: rgb(23 23 20 / 0.72);
+  padding: 0.75rem 1rem;
+  color: white;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+
+@media (min-width: 1024px) {
+  .highlight-film-card {
+    grid-template-columns: minmax(20rem, 0.72fr) minmax(0, 1.28fr);
+  }
+
+  .highlight-film-frame {
+    min-height: 38rem;
+  }
 }
 
 a.contact-row:hover {

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, MapPin } from "lucide-react";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { HighlightFilm } from "@/components/highlight-film";
 import { getStories, getStory } from "@/lib/sanity";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -53,6 +54,7 @@ export default async function StoryPage({ params }: PageProps) {
           <p className="font-serif text-3xl leading-[1.25] sm:text-4xl">{story.description}</p>
         </div>
       </section>
+      {story.highlightVideo && <HighlightFilm video={story.highlightVideo} />}
       <section className="bg-warm-white pb-24 sm:pb-32">
         <div className="shell columns-1 gap-4 sm:columns-2">
           {gallery.map((image, index) => (

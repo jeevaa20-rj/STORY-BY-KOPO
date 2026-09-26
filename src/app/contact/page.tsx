@@ -7,12 +7,12 @@ import { getSiteSettings } from "@/lib/sanity";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Enquire about wedding, portrait, engagement or event photography with Story by Kopi.",
+  description: "Enquire about wedding photography, videography, portraits, engagements, or event coverage with Story by Kopi.",
 };
 
 export default async function ContactPage() {
   const siteDetails = await getSiteSettings();
-  const whatsappText = encodeURIComponent("Hello Story by Kopi, I'd love to ask about a photography session.");
+  const whatsappText = encodeURIComponent("Hello Story by Kopi, I'd love to ask about photography or videography.");
   return (
     <main>
       <Header />

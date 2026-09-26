@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { HighlightFilm } from "@/components/highlight-film";
 import { HeroSlider } from "@/components/hero-slider";
 import { InstagramFeed } from "@/components/instagram-feed";
 import { Reveal } from "@/components/reveal";
@@ -11,6 +12,11 @@ import { getStories } from "@/lib/sanity";
 
 export default async function Home() {
   const stories = await getStories();
+  const storiesWithVideo = stories
+    .filter((story) => story.highlightVideo)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const featuredFilm =
+    storiesWithVideo.find((story) => story.highlightVideo?.featuredVideo) ?? storiesWithVideo[0];
   return (
     <main>
       <Header transparent />
@@ -23,7 +29,7 @@ export default async function Home() {
             <div className="mt-8 hidden h-24 w-px bg-copper/45 lg:block" />
           </Reveal>
           <Reveal delay={0.12}>
-            <h2 className="section-title max-w-4xl">We photograph the feeling <span className="italic text-copper">between</span> the moments.</h2>
+            <h2 className="section-title max-w-4xl">We preserve the feeling <span className="italic text-copper">between</span> the moments.</h2>
             <div className="mt-9 grid gap-8 border-t border-ink/15 pt-8 sm:grid-cols-2">
               <p className="body-copy">The hand squeeze before the doors open. The half-second glance across a crowded room. The laughter that arrives just after the posed photograph is over.</p>
               <div>
@@ -54,6 +60,8 @@ export default async function Home() {
         </div>
       </section>
 
+      {featuredFilm?.highlightVideo && <HighlightFilm video={featuredFilm.highlightVideo} />}
+
       <section className="overflow-hidden bg-ink py-24 text-ivory sm:py-32">
         <div className="shell grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-24">
           <Reveal className="relative">
@@ -67,7 +75,7 @@ export default async function Home() {
           <Reveal delay={0.14}>
             <p className="eyebrow mb-5 text-copper-light">The experience</p>
             <h2 className="section-title text-ivory">Present with you.<br /><span className="italic text-copper-light">Never in the way.</span></h2>
-            <p className="mt-8 max-w-lg text-sm leading-8 text-white/60 sm:text-base">From the first conversation to the final gallery, the experience is unhurried and personal. We learn what matters to you, then let the day breathe.</p>
+            <p className="mt-8 max-w-lg text-sm leading-8 text-white/60 sm:text-base">From the first conversation to the final photographs and films, the experience is unhurried and personal. We learn what matters to you, then let the day breathe.</p>
             <div className="mt-10 grid grid-cols-3 border-y border-white/12 py-7">
               <div><strong className="font-serif text-3xl font-normal">01</strong><p className="mt-2 text-[0.62rem] uppercase tracking-[0.18em] text-white/45">Connect</p></div>
               <div><strong className="font-serif text-3xl font-normal">02</strong><p className="mt-2 text-[0.62rem] uppercase tracking-[0.18em] text-white/45">Create</p></div>

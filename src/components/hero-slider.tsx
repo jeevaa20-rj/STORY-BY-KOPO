@@ -63,7 +63,7 @@ export function HeroSlider() {
           </h1>
           <div className="hero-reveal hero-reveal--delay-2 mt-9 flex flex-col items-start gap-7 sm:flex-row sm:items-center">
             <p className="max-w-md text-sm leading-7 text-white/72 sm:text-base">
-              Editorial wedding and portrait photography for people who want to remember how it felt—not just how it looked.
+              Editorial wedding photography and films for people who want to remember how it felt—not just how it looked.
             </p>
             <Link href="/portfolio" className="button button--light">
               View portfolio <ArrowUpRight size={17} />

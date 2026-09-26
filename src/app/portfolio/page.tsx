@@ -6,7 +6,7 @@ import { galleryImages } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Portfolio",
-  description: "Explore Story by Kopi wedding, engagement, portrait and event photography.",
+  description: "Explore Story by Kopi wedding films, photography, portraits, engagements, and event coverage.",
 };
 
 export default function PortfolioPage() {
@@ -19,7 +19,7 @@ export default function PortfolioPage() {
             <p className="eyebrow mb-6 text-copper">The portfolio</p>
             <h1 className="page-title">Stories in<br /><span className="italic text-copper">stillness & motion.</span></h1>
           </div>
-          <p className="max-w-md pb-2 text-sm leading-7 text-ink/60">Weddings, portraits, and celebrations photographed with an editorial eye and a documentary heart.</p>
+          <p className="max-w-md pb-2 text-sm leading-7 text-ink/60">Weddings, portraits, and celebrations preserved in photographs and films with an editorial eye and a documentary heart.</p>
         </div>
       </section>
       <section className="pb-24 sm:pb-32 bg-ivory">

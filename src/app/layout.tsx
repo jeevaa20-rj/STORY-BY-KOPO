@@ -23,16 +23,16 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://storybykopi.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: "Story by Kopi | Wedding & Portrait Photography", template: "%s | Story by Kopi" },
-  description: "Story-driven wedding, portrait, engagement and event photography. Honest images, quietly observed and artfully preserved.",
-  keywords: ["wedding photographer", "portrait photographer", "engagement photography", "event photography", "Story by Kopi"],
+  title: { default: "Story by Kopi | Wedding Photography & Films", template: "%s | Story by Kopi" },
+  description: "Story-driven wedding photography and films, portraits, engagements, and events—honestly observed and artfully preserved.",
+  keywords: ["wedding photographer", "wedding videographer", "wedding films", "portrait photography", "event photography and videography", "Story by Kopi"],
   openGraph: {
     title: "Story by Kopi",
-    description: "Your story, held in light.",
+    description: "Story-driven wedding photography and films, honestly observed.",
     type: "website",
     images: [{ url: "/images/hero-courtyard.png", width: 1792, height: 1024, alt: "A Story by Kopi wedding photograph" }],
   },
-  twitter: { card: "summary_large_image", title: "Story by Kopi", description: "Your story, held in light.", images: ["/images/hero-courtyard.png"] },
+  twitter: { card: "summary_large_image", title: "Story by Kopi", description: "Story-driven wedding photography and films, honestly observed.", images: ["/images/hero-courtyard.png"] },
 };
 
 export const viewport: Viewport = { themeColor: "#171714", colorScheme: "light dark" };

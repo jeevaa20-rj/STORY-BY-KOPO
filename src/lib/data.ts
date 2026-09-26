@@ -3,7 +3,8 @@ export type GalleryCategory =
   | "Pre-wedding"
   | "Portrait"
   | "Engagement"
-  | "Events";
+  | "Events"
+  | "Videography";
 
 export type GalleryImage = {
   id: string;
@@ -13,6 +14,15 @@ export type GalleryImage = {
   width: number;
   height: number;
   objectPosition?: string;
+};
+
+export type HighlightVideo = {
+  title: string;
+  facebookVideoUrl?: string;
+  teaserVideoUrl?: string;
+  poster: Pick<GalleryImage, "src" | "alt" | "width" | "height">;
+  caption?: string;
+  featuredVideo: boolean;
 };
 
 export type Story = {
@@ -25,6 +35,7 @@ export type Story = {
   description: string;
   coverImage: GalleryImage;
   gallery: GalleryImage[];
+  highlightVideo?: HighlightVideo;
 };
 
 export type AboutContent = {
@@ -176,6 +187,7 @@ export const categories: (GalleryCategory | "All")[] = [
   "Portrait",
   "Engagement",
   "Events",
+  "Videography",
 ];
 
 export const siteDetails: SiteSettings = {
