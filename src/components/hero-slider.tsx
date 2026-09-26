@@ -7,19 +7,19 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 const slides = [
   {
-    src: "/images/hero-courtyard.png",
+    src: "/images/wedabi.jpg",
     alt: "Newlyweds walking through an old stone courtyard at golden hour",
     label: "Wedding · The Courtyard Vows",
     position: "center",
   },
   {
-    src: "/images/evening-dance.png",
+    src: "/images/model.jpg",
     alt: "Newlyweds dancing at a candlelit garden reception",
     label: "Celebration · After the Last Toast",
     position: "center",
   },
   {
-    src: "/images/coastal-engagement.png",
+    src: "/images/wedm.jpg",
     alt: "Engaged couple walking through coastal grass at dusk",
     label: "Engagement · Wild Coast, Soft Light",
     position: "center",
