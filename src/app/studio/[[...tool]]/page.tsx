@@ -1,7 +1,15 @@
 "use client";
 
-import { NextStudio } from "next-sanity/studio";
+import dynamic from "next/dynamic";
 import config from "@/sanity/config";
+
+// Sanity owns its internal browser history. Loading the Studio client-only keeps
+// that router out of Next's server hydration pass, where route segments can
+// otherwise change the size of an internal memo dependency list.
+const NextStudio = dynamic(
+  () => import("next-sanity/studio").then((module) => module.NextStudio),
+  { ssr: false },
+);
 
 export default function StudioPage() {
   if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
