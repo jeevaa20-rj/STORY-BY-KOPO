@@ -1,11 +1,36 @@
-import { galleryImages } from "@/lib/data";
-
 export type InstagramPost = {
   id: string;
   mediaUrl: string;
   permalink: string;
   caption: string;
 };
+
+const fallbackPosts = [
+  {
+    mediaUrl: "/images/model.jpg",
+    caption: "Bride in a green sari standing beneath a weathered stone arch",
+  },
+  {
+    mediaUrl: "/images/wedabi.jpg",
+    caption: "Newlyweds celebrating together beneath hanging lights",
+  },
+  {
+    mediaUrl: "/images/wedm.jpg",
+    caption: "Newlyweds smiling during their traditional wedding ceremony",
+  },
+  {
+    mediaUrl: "/images/wedabi.jpg",
+    caption: "A joyful wedding celebration captured in black and white",
+  },
+  {
+    mediaUrl: "/images/wedm.jpg",
+    caption: "A candid moment from a traditional wedding ceremony",
+  },
+  {
+    mediaUrl: "/images/model.jpg",
+    caption: "Bridal portrait framed by the texture of historic stone walls",
+  },
+];
 
 export async function getInstagramPosts(): Promise<InstagramPost[]> {
   const token = process.env.INSTAGRAM_ACCESS_TOKEN;
@@ -40,10 +65,10 @@ export async function getInstagramPosts(): Promise<InstagramPost[]> {
     }
   }
 
-  return galleryImages.slice(0, 6).map((image) => ({
-    id: `demo-${image.id}`,
-    mediaUrl: image.src,
+  return fallbackPosts.map((image, index) => ({
+    id: `demo-${index}`,
+    mediaUrl: image.mediaUrl,
     permalink: `https://instagram.com/${username}`,
-    caption: image.alt,
+    caption: image.caption,
   }));
 }
