@@ -349,11 +349,22 @@ button {
 .home-hero-grid {
   position: absolute;
   inset: 0;
+  z-index: 2;
   background-image:
     linear-gradient(rgb(255 255 255 / 0.055) 1px, transparent 1px),
     linear-gradient(90deg, rgb(255 255 255 / 0.055) 1px, transparent 1px);
   background-size: 5rem 5rem;
-  mask-image: linear-gradient(to bottom, black, transparent 92%);
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.75), transparent 92%);
+  pointer-events: none;
+}
+
+.home-hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgb(8 9 7 / 0.9) 0%, rgb(8 9 7 / 0.68) 38%, rgb(8 9 7 / 0.18) 72%, rgb(8 9 7 / 0.24) 100%),
+    linear-gradient(0deg, rgb(8 9 7 / 0.72) 0%, transparent 48%, rgb(8 9 7 / 0.2) 100%);
   pointer-events: none;
 }
 
@@ -362,7 +373,7 @@ button {
   z-index: 2;
   display: grid;
   min-height: 100svh;
-  grid-template-columns: minmax(0, 0.9fr) minmax(24rem, 1.1fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: clamp(2.5rem, 6vw, 7.5rem);
   padding-top: 8.25rem;
@@ -372,6 +383,7 @@ button {
 .home-hero-copy {
   position: relative;
   z-index: 2;
+  width: min(100%, 56rem);
 }
 
 .availability-badge {
@@ -400,7 +412,7 @@ button {
 .home-hero-title {
   margin-top: clamp(1.6rem, 3vw, 2.8rem);
   font-family: var(--font-sans), sans-serif;
-  font-size: clamp(4rem, 7.15vw, 7.5rem);
+  font-size: clamp(4.5rem, 8.2vw, 8.6rem);
   font-weight: 600;
   line-height: 0.82;
   letter-spacing: -0.075em;
@@ -434,19 +446,19 @@ button {
 }
 
 .home-hero-gallery {
-  width: min(100%, 38rem, 54.4svh);
-  justify-self: end;
+  position: absolute;
+  inset: 0;
+  width: 100%;
 }
 
 .home-hero-frame {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  max-height: min(68svh, 48rem);
+  position: absolute;
+  inset: 0;
   overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 0.14);
-  border-radius: clamp(1.5rem, 3vw, 3rem);
+  border: 0;
+  border-radius: 0;
   background: #252620;
-  box-shadow: 0 2.5rem 6rem rgb(0 0 0 / 0.38);
+  box-shadow: none;
   isolation: isolate;
 }
 
@@ -454,7 +466,7 @@ button {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(180deg, rgb(0 0 0 / 0.22), transparent 26%, transparent 64%, rgb(0 0 0 / 0.68));
+  background: linear-gradient(180deg, rgb(0 0 0 / 0.16), transparent 30%, transparent 68%, rgb(0 0 0 / 0.5));
   content: "";
   pointer-events: none;
 }
@@ -475,8 +487,8 @@ button {
 .home-hero-frame-top,
 .home-hero-caption {
   position: absolute;
-  right: clamp(1.2rem, 2vw, 2rem);
-  left: clamp(1.2rem, 2vw, 2rem);
+  right: clamp(1.25rem, 3vw, 3.5rem);
+  left: auto;
   z-index: 3;
   display: flex;
   justify-content: space-between;
@@ -484,7 +496,8 @@ button {
 }
 
 .home-hero-frame-top {
-  top: clamp(1.2rem, 2vw, 2rem);
+  top: 7rem;
+  width: min(22rem, calc(100% - 2.5rem));
   font-size: 0.58rem;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -492,8 +505,9 @@ button {
 }
 
 .home-hero-caption {
-  bottom: clamp(1.2rem, 2vw, 2rem);
+  bottom: 10.25rem;
   align-items: end;
+  width: min(27rem, calc(100% - 2.5rem));
 }
 
 .home-hero-caption > span {
@@ -517,10 +531,14 @@ button {
 }
 
 .hero-controls {
+  position: absolute;
+  right: clamp(1.25rem, 3vw, 3.5rem);
+  bottom: 6.35rem;
+  z-index: 4;
   display: flex;
   justify-content: flex-end;
   gap: 0.35rem;
-  margin-top: 1rem;
+  margin-top: 0;
 }
 
 .hero-number {
@@ -1010,12 +1028,11 @@ a.contact-row:hover {
 
 @media (max-width: 1100px) {
   .home-hero-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.82fr);
-    gap: 2.5rem;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .home-hero-title {
-    font-size: clamp(3.5rem, 6.7vw, 5.5rem);
+    font-size: clamp(4.2rem, 9vw, 7rem);
   }
 
   .home-intro-layout {
@@ -1035,10 +1052,9 @@ a.contact-row:hover {
   .home-hero-layout {
     min-height: 100svh;
     grid-template-columns: minmax(0, 1fr);
-    align-content: start;
-    gap: 3.25rem;
-    padding-top: 8rem;
-    padding-bottom: 7.5rem;
+    align-content: end;
+    padding-top: 8.5rem;
+    padding-bottom: 9.5rem;
   }
 
   .availability-badge {
@@ -1047,7 +1063,7 @@ a.contact-row:hover {
 
   .home-hero-title {
     margin-top: 1.6rem;
-    font-size: clamp(3.5rem, 15.4vw, 5.2rem);
+    font-size: clamp(3.35rem, 14.5vw, 5rem);
   }
 
   .home-hero-description {
@@ -1064,15 +1080,30 @@ a.contact-row:hover {
   }
 
   .home-hero-gallery {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    max-width: none;
-    justify-self: stretch;
   }
 
   .home-hero-frame {
-    aspect-ratio: 4 / 4.75;
-    max-height: none;
-    border-radius: 1.5rem;
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+  }
+
+  .home-hero-scrim {
+    background:
+      linear-gradient(0deg, rgb(8 9 7 / 0.92) 0%, rgb(8 9 7 / 0.62) 52%, rgb(8 9 7 / 0.25) 100%),
+      linear-gradient(90deg, rgb(8 9 7 / 0.52), transparent);
+  }
+
+  .home-hero-frame-top {
+    top: 6.5rem;
+    right: 1rem;
+  }
+
+  .home-hero-caption {
+    display: none;
   }
 
   .home-hero-caption > strong {
@@ -1084,6 +1115,8 @@ a.contact-row:hover {
   }
 
   .hero-controls {
+    right: 1rem;
+    bottom: 5.75rem;
     justify-content: center;
   }
 

@@ -56,6 +56,54 @@ export function HeroSlider() {
 
   return (
     <section className="home-hero" aria-labelledby="home-hero-title">
+      <div className="home-hero-gallery hero-reveal">
+        <div className="home-hero-frame">
+          {slides.map((slide, index) => (
+            <div
+              key={slide.src}
+              className={`hero-slide ${index === active ? "hero-slide--active" : ""}`}
+              aria-hidden={index !== active}
+            >
+              <Image
+                src={slide.src}
+                alt={index === active ? slide.alt : ""}
+                fill
+                priority={index === 0}
+                sizes="100vw"
+                className="object-cover"
+                style={{ objectPosition: slide.position }}
+              />
+            </div>
+          ))}
+
+          <div className="home-hero-frame-top" aria-hidden="true">
+            <span>Story by Kopi</span>
+            <span>Frame / {String(active + 1).padStart(2, "0")}</span>
+          </div>
+
+          <div className="home-hero-caption" aria-live="polite">
+            <span>{slides[active].type}</span>
+            <strong>{slides[active].label}</strong>
+          </div>
+        </div>
+
+        <div className="hero-controls" role="group" aria-label="Choose a hero photograph">
+          {slides.map((slide, index) => (
+            <button
+              key={slide.src}
+              type="button"
+              onClick={() => setActive(index)}
+              className={`hero-number ${index === active ? "hero-number--active" : ""}`}
+              aria-label={`Show ${slide.type}: ${slide.label}`}
+              aria-pressed={index === active}
+            >
+              <span>{String(index + 1).padStart(2, "0")}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="home-hero-scrim" aria-hidden="true" />
       <div className="home-hero-grid" aria-hidden="true" />
 
       <div className="shell home-hero-layout">
@@ -82,53 +130,6 @@ export function HeroSlider() {
             <Link href="/contact" className="button button--ghost">
               Book a story
             </Link>
-          </div>
-        </div>
-
-        <div className="home-hero-gallery hero-reveal hero-reveal--delay-2">
-          <div className="home-hero-frame">
-            {slides.map((slide, index) => (
-              <div
-                key={slide.src}
-                className={`hero-slide ${index === active ? "hero-slide--active" : ""}`}
-                aria-hidden={index !== active}
-              >
-                <Image
-                  src={slide.src}
-                  alt={index === active ? slide.alt : ""}
-                  fill
-                  priority={index === 0}
-                  sizes="(max-width: 767px) 100vw, (max-width: 1199px) 52vw, 46vw"
-                  className="object-cover"
-                  style={{ objectPosition: slide.position }}
-                />
-              </div>
-            ))}
-
-            <div className="home-hero-frame-top" aria-hidden="true">
-              <span>Story by Kopi</span>
-              <span>Frame / {String(active + 1).padStart(2, "0")}</span>
-            </div>
-
-            <div className="home-hero-caption" aria-live="polite">
-              <span>{slides[active].type}</span>
-              <strong>{slides[active].label}</strong>
-            </div>
-          </div>
-
-          <div className="hero-controls" role="group" aria-label="Choose a hero photograph">
-            {slides.map((slide, index) => (
-              <button
-                key={slide.src}
-                type="button"
-                onClick={() => setActive(index)}
-                className={`hero-number ${index === active ? "hero-number--active" : ""}`}
-                aria-label={`Show ${slide.type}: ${slide.label}`}
-                aria-pressed={index === active}
-              >
-                <span>{String(index + 1).padStart(2, "0")}</span>
-              </button>
-            ))}
           </div>
         </div>
       </div>
