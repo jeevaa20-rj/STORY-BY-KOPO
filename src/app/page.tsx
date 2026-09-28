@@ -22,30 +22,43 @@ export default async function Home() {
       <Header transparent />
       <HeroSlider />
 
-      <section id="intro" className="section bg-ivory">
-        <div className="shell grid gap-12 lg:grid-cols-[0.8fr_1.4fr] lg:gap-24">
-          <Reveal>
-            <p className="eyebrow text-copper">Story by Kopi</p>
-            <div className="mt-8 hidden h-24 w-px bg-copper/45 lg:block" />
+      <section id="intro" className="home-intro">
+        <div className="shell home-intro-layout">
+          <Reveal className="home-intro-visual">
+            <div className="home-intro-image">
+              <Image
+                src="/images/wedm.jpg"
+                alt="A couple sharing a quiet moment outdoors"
+                fill
+                sizes="(max-width: 1024px) 100vw, 38vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="home-intro-stamp" aria-hidden="true">
+              <span>Unscripted</span>
+              <strong>Always</strong>
+            </div>
           </Reveal>
-          <Reveal delay={0.12}>
-            <h2 className="section-title max-w-4xl">We preserve the feeling <span className="italic text-copper">between</span> the moments.</h2>
-            <div className="mt-9 grid gap-8 border-t border-ink/15 pt-8 sm:grid-cols-2">
-              <p className="body-copy">The hand squeeze before the doors open. The half-second glance across a crowded room. The laughter that arrives just after the posed photograph is over.</p>
+
+          <Reveal className="home-intro-copy" delay={0.12}>
+            <p className="eyebrow">01 / Our approach</p>
+            <h2>We photograph what happens <em>between</em> the plans.</h2>
+            <div className="home-intro-details">
+              <p>The hand squeeze before the doors open. The half-second glance across a crowded room. The laughter that arrives just after the posed photograph is over.</p>
               <div>
-                <p className="body-copy">Our approach is calm, artful, and deeply human—making space for your day to unfold while preserving it with intention.</p>
-                <Link href="/about" className="text-link mt-6">Meet the photographer <ArrowRight size={15} /></Link>
+                <p>Our approach is calm, artful, and deeply human—making space for your day to unfold while preserving it with intention.</p>
+                <Link href="/about" className="text-link mt-7">Meet the photographer <ArrowRight size={15} /></Link>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="section bg-warm-white">
+      <section className="section home-stories bg-warm-white">
         <div className="shell">
           <Reveal className="mb-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="eyebrow mb-4 text-copper">Selected stories</p>
+              <p className="eyebrow mb-4 text-copper">02 / Selected stories</p>
               <h2 className="section-title">Recent chapters</h2>
             </div>
             <Link href="/stories" className="text-link">View all stories <ArrowRight size={15} /></Link>
@@ -62,10 +75,10 @@ export default async function Home() {
 
       {featuredFilm?.highlightVideo && <HighlightFilm video={featuredFilm.highlightVideo} />}
 
-      <section className="overflow-hidden bg-ink py-24 text-ivory sm:py-32">
+      <section className="home-experience overflow-hidden bg-ink py-24 text-ivory sm:py-32">
         <div className="shell grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-24">
           <Reveal className="relative">
-            <div className="relative aspect-[4/5] max-w-[620px] overflow-hidden">
+            <div className="experience-image relative aspect-[4/5] max-w-[620px] overflow-hidden">
               <Image src="/images/wedabi.jpg" alt="Newlyweds celebrating together beneath hanging lights" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
             </div>
             <div className="absolute -bottom-8 -right-3 grid size-32 place-items-center rounded-full border border-copper/50 bg-ink text-center font-serif text-sm italic text-copper-light sm:-right-9 sm:size-40">
@@ -73,7 +86,7 @@ export default async function Home() {
             </div>
           </Reveal>
           <Reveal delay={0.14}>
-            <p className="eyebrow mb-5 text-copper-light">The experience</p>
+            <p className="eyebrow mb-5 text-copper-light">03 / The experience</p>
             <h2 className="section-title text-ivory">Present with you.<br /><span className="italic text-copper-light">Never in the way.</span></h2>
             <p className="mt-8 max-w-lg text-sm leading-8 text-white/60 sm:text-base">From the first conversation to the final photographs and films, the experience is unhurried and personal. We learn what matters to you, then let the day breathe.</p>
             <div className="mt-10 grid grid-cols-3 border-y border-white/12 py-7">
@@ -86,7 +99,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="section bg-ivory text-center">
+      <section className="section home-cta bg-ivory text-center">
         <Reveal className="shell max-w-5xl">
           <p className="eyebrow mb-6 text-copper">Now booking</p>
           <h2 className="font-serif text-[clamp(3.2rem,8vw,7.6rem)] leading-[0.86] tracking-[-0.04em]">Let&apos;s make something<br /><span className="italic text-copper">worth remembering.</span></h2>

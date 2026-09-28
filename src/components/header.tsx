@@ -41,7 +41,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               {link.label}
             </Link>
           ))}
-          <Link href="/contact" className="button button--small button--copper">
+          <Link href="/contact" className="button button--small header-book-button">
             Book a story
           </Link>
         </nav>
