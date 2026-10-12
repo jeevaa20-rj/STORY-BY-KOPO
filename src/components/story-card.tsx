@@ -13,11 +13,11 @@ export function StoryCard({ story, index = 0 }: { story: Story; index?: number }
             alt={story.coverImage.alt}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover transition duration-1000 ease-out group-hover:scale-[1.035]"
+            className="object-cover transition duration-700 ease-out group-hover:scale-[1.035]"
             style={{ objectPosition: story.coverImage.objectPosition }}
           />
-          <span className="absolute right-5 top-5 grid size-10 place-items-center rounded-full bg-ivory/90 text-ink opacity-0 transition duration-500 group-hover:opacity-100">
-            <ArrowUpRight size={17} />
+          <span className="absolute right-4 top-4 grid size-10 place-items-center rounded-full bg-copper text-white opacity-0 shadow-lg transition duration-500 group-hover:opacity-100 group-hover:translate-y-0 translate-y-1">
+            <ArrowUpRight size={16} />
           </span>
         </div>
       </Link>

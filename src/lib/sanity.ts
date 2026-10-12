@@ -150,7 +150,7 @@ function normalizeImage(image: SanityImage | undefined, id: string, category: Ga
 
   return {
     id,
-    src: cloudinarySource || image?.asset?.url || "/images/hero-courtyard.png",
+    src: cloudinarySource || image?.asset?.url || "/images/wedabi.jpg",
     alt: image?.alt || `${category} photograph by Story by Kopi`,
     category,
     width,

@@ -124,7 +124,7 @@ export function HeroSlider() {
           </p>
 
           <div className="home-hero-actions hero-reveal hero-reveal--delay-3">
-            <Link href="/portfolio" className="button button--lime">
+            <Link href="/portfolio" className="button button--copper">
               Explore the work <ArrowUpRight size={17} aria-hidden="true" />
             </Link>
             <Link href="/contact" className="button button--ghost">

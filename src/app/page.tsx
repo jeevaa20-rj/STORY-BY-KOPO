@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 import { HighlightFilm } from "@/components/highlight-film";
 import { HeroSlider } from "@/components/hero-slider";
 import { InstagramFeed } from "@/components/instagram-feed";
+import { PhotoStrip } from "@/components/photo-strip";
 import { Reveal } from "@/components/reveal";
 import { StoryCard } from "@/components/story-card";
 import { getStories } from "@/lib/sanity";
@@ -25,14 +26,25 @@ export default async function Home() {
       <section id="intro" className="home-intro">
         <div className="shell home-intro-layout">
           <Reveal className="home-intro-visual">
-            <div className="home-intro-image">
-              <Image
-                src="/images/wedm.jpg"
-                alt="A couple sharing a quiet moment outdoors"
-                fill
-                sizes="(max-width: 1024px) 100vw, 38vw"
-                className="object-cover"
-              />
+            <div className="home-intro-image-grid relative">
+              <div className="home-intro-image">
+                <Image
+                  src="/images/wedm.jpg"
+                  alt="A couple sharing a quiet moment outdoors"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 38vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="home-intro-secondary-image hidden sm:block">
+                <Image
+                  src="/images/model.jpg"
+                  alt="Atmospheric bridal portrait"
+                  fill
+                  sizes="200px"
+                  className="object-cover"
+                />
+              </div>
             </div>
             <div className="home-intro-stamp" aria-hidden="true">
               <span>Unscripted</span>
@@ -53,6 +65,8 @@ export default async function Home() {
           </Reveal>
         </div>
       </section>
+
+      <PhotoStrip />
 
       <section className="section home-stories bg-warm-white">
         <div className="shell">
@@ -78,10 +92,15 @@ export default async function Home() {
       <section className="home-experience overflow-hidden bg-ink py-24 text-ivory sm:py-32">
         <div className="shell grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-24">
           <Reveal className="relative">
-            <div className="experience-image relative aspect-[4/5] max-w-[620px] overflow-hidden">
-              <Image src="/images/wedabi.jpg" alt="Newlyweds celebrating together beneath hanging lights" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+            <div className="relative">
+              <div className="experience-image relative aspect-[4/5] max-w-[620px] overflow-hidden">
+                <Image src="/images/wedabi.jpg" alt="Newlyweds celebrating together beneath hanging lights" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+              </div>
+              <div className="experience-secondary-image absolute -bottom-6 -left-6 hidden aspect-[3/4] w-48 overflow-hidden rounded-xl border-4 border-ink shadow-2xl md:block">
+                <Image src="/images/model.jpg" alt="Bridal portrait details" fill sizes="192px" className="object-cover" />
+              </div>
             </div>
-            <div className="absolute -bottom-8 -right-3 grid size-32 place-items-center rounded-full border border-copper/50 bg-ink text-center font-serif text-sm italic text-copper-light sm:-right-9 sm:size-40">
+            <div className="absolute -bottom-8 -right-3 grid size-32 place-items-center rounded-full border border-copper/50 bg-ink text-center font-serif text-sm italic text-copper-light sm:-right-9 sm:size-40 shadow-xl">
               Honest<br />by nature<br />artful by choice
             </div>
           </Reveal>
@@ -89,22 +108,32 @@ export default async function Home() {
             <p className="eyebrow mb-5 text-copper-light">03 / The experience</p>
             <h2 className="section-title text-ivory">Present with you.<br /><span className="italic text-copper-light">Never in the way.</span></h2>
             <p className="mt-8 max-w-lg text-sm leading-8 text-white/60 sm:text-base">From the first conversation to the final photographs and films, the experience is unhurried and personal. We learn what matters to you, then let the day breathe.</p>
-            <div className="mt-10 grid grid-cols-3 border-y border-white/12 py-7">
-              <div><strong className="font-serif text-3xl font-normal">01</strong><p className="mt-2 text-[0.62rem] uppercase tracking-[0.18em] text-white/45">Connect</p></div>
-              <div><strong className="font-serif text-3xl font-normal">02</strong><p className="mt-2 text-[0.62rem] uppercase tracking-[0.18em] text-white/45">Create</p></div>
-              <div><strong className="font-serif text-3xl font-normal">03</strong><p className="mt-2 text-[0.62rem] uppercase tracking-[0.18em] text-white/45">Remember</p></div>
+            <div className="mt-10 grid grid-cols-3 border-y border-white/10 py-7">
+              <div><strong className="font-serif text-3xl font-normal text-copper-light">01</strong><p className="mt-2 text-[0.62rem] uppercase tracking-[0.18em] text-white/40">Connect</p></div>
+              <div><strong className="font-serif text-3xl font-normal text-copper-light">02</strong><p className="mt-2 text-[0.62rem] uppercase tracking-[0.18em] text-white/40">Create</p></div>
+              <div><strong className="font-serif text-3xl font-normal text-copper-light">03</strong><p className="mt-2 text-[0.62rem] uppercase tracking-[0.18em] text-white/40">Remember</p></div>
             </div>
             <Link href="/contact" className="button button--outline mt-9">Tell us your story <ArrowUpRight size={17} /></Link>
           </Reveal>
         </div>
       </section>
 
-      <section className="section home-cta bg-ivory text-center">
+      <section className="home-cta section relative overflow-hidden text-center">
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/images/wedm.jpg"
+            alt="Atmospheric wedding celebration"
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-15 filter brightness-50 contrast-125"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#11120f]/90 via-[#11120f]/80 to-[#11120f]/95" />
+        </div>
         <Reveal className="shell max-w-5xl">
-          <p className="eyebrow mb-6 text-copper">Now booking</p>
-          <h2 className="font-serif text-[clamp(3.2rem,8vw,7.6rem)] leading-[0.86] tracking-[-0.04em]">Let&apos;s make something<br /><span className="italic text-copper">worth remembering.</span></h2>
-          <p className="mx-auto mt-8 max-w-lg text-sm leading-7 text-ink/60">Tell us where your story is taking place and what you want to hold onto. We&apos;ll take it from there.</p>
-          <Link href="/contact" className="button button--dark mt-9">Check availability <ArrowUpRight size={17} /></Link>
+          <p className="eyebrow mb-6 text-copper-light">Now booking</p>
+          <h2 className="font-serif text-[clamp(3.2rem,8vw,7.6rem)] leading-[0.86] tracking-[-0.04em] text-ivory">Let&apos;s make something<br /><span className="italic text-copper-light">worth remembering.</span></h2>
+          <p className="mx-auto mt-8 max-w-lg text-sm leading-7 text-white/70">Tell us where your story is taking place and what you want to hold onto. We&apos;ll take it from there.</p>
+          <Link href="/contact" className="button button--copper mt-9 shadow-xl">Check availability <ArrowUpRight size={17} /></Link>
         </Reveal>
       </section>
 

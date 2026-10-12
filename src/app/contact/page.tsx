@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
@@ -26,22 +27,40 @@ export default async function ContactPage() {
         </div>
       </section>
       <section className="section bg-warm-white pt-0">
-        <div className="shell grid gap-14 lg:grid-cols-[0.65fr_1.35fr] lg:gap-24">
-          <aside>
-            <p className="eyebrow mb-7 text-copper">Direct</p>
-            <div className="space-y-6 text-sm">
-              <a className="contact-row" href={`mailto:${siteDetails.email}`}><Mail size={17} /><span>{siteDetails.email}</span></a>
-              {siteDetails.phone && <a className="contact-row" href={`tel:${siteDetails.phone.replace(/\s/g, "")}`}><Phone size={17} /><span>{siteDetails.phone}</span></a>}
-              {siteDetails.whatsapp && <a className="contact-row" href={`https://wa.me/${siteDetails.whatsapp}?text=${whatsappText}`} target="_blank" rel="noreferrer"><MessageCircle size={17} /><span>WhatsApp enquiry</span></a>}
-              <a className="contact-row" href={`https://instagram.com/${siteDetails.instagram}`} target="_blank" rel="noreferrer"><Instagram size={17} /><span>@{siteDetails.instagram}</span></a>
-              <p className="contact-row"><MapPin size={17} /><span>{siteDetails.location}</span></p>
+        <div className="shell grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <aside className="flex flex-col justify-between">
+            <div>
+              <p className="eyebrow mb-7 text-copper">Direct</p>
+              <div className="space-y-6 text-sm">
+                <a className="contact-row" href={`mailto:${siteDetails.email}`}><Mail size={17} /><span>{siteDetails.email}</span></a>
+                {siteDetails.phone && <a className="contact-row" href={`tel:${siteDetails.phone.replace(/\s/g, "")}`}><Phone size={17} /><span>{siteDetails.phone}</span></a>}
+                {siteDetails.whatsapp && <a className="contact-row" href={`https://wa.me/${siteDetails.whatsapp}?text=${whatsappText}`} target="_blank" rel="noreferrer"><MessageCircle size={17} /><span>WhatsApp enquiry</span></a>}
+                <a className="contact-row" href={`https://instagram.com/${siteDetails.instagram}`} target="_blank" rel="noreferrer"><Instagram size={17} /><span>@{siteDetails.instagram}</span></a>
+                <p className="contact-row"><MapPin size={17} /><span>{siteDetails.location}</span></p>
+              </div>
             </div>
-            <div className="mt-10 border-t border-ink/15 pt-7">
-              <p className="font-serif text-2xl italic">Good stories travel.</p>
-              <p className="mt-3 text-sm leading-7 text-ink/55">For destination weddings and events, include your location and approximate dates in the form.</p>
+
+            <div className="mt-10 overflow-hidden rounded-2xl border border-ink/10 bg-stone/20 shadow-md">
+              <div className="relative aspect-[16/10] w-full">
+                <Image
+                  src="/images/wedm.jpg"
+                  alt="A couple walking together at twilight"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-5">
+                <p className="font-serif text-xl italic">Good stories travel.</p>
+                <p className="mt-2 text-xs leading-6 text-ink/65">
+                  Available for destination weddings across Sri Lanka and worldwide.
+                </p>
+              </div>
             </div>
           </aside>
-          <ContactForm />
+          <div className="rounded-2xl border border-ink/10 bg-ivory/60 p-8 shadow-sm backdrop-blur-sm sm:p-12">
+            <ContactForm />
+          </div>
         </div>
       </section>
       <Footer />

@@ -55,11 +55,11 @@ export type SiteSettings = {
 };
 
 const images = {
-  courtyard: "/images/hero-courtyard.png",
-  quiet: "/images/quiet-moment.png",
-  evening: "/images/evening-dance.png",
-  coast: "/images/coastal-engagement.png",
-  bouquet: "/images/bouquet-detail.png",
+  courtyard: "/images/wedabi.jpg",
+  quiet: "/images/wedm.jpg",
+  evening: "/images/model.jpg",
+  coast: "/images/wedm.jpg",
+  bouquet: "/images/wedabi.jpg",
 };
 
 export const galleryImages: GalleryImage[] = [

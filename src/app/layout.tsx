@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "@/app/globals.css";
 import { Analytics } from "@/components/analytics";
 import { WhatsAppButton } from "@/components/whatsapp-button";
@@ -12,10 +12,10 @@ const display = Cormorant_Garamond({
   display: "swap",
 });
 
-const sans = Manrope({
+const sans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     title: "Story by Kopi",
     description: "Story-driven wedding photography and films, honestly observed.",
     type: "website",
-    images: [{ url: "/images/hero-courtyard.png", width: 1792, height: 1024, alt: "A Story by Kopi wedding photograph" }],
+    images: [{ url: "/images/wedabi.jpg", width: 1792, height: 1024, alt: "A Story by Kopi wedding photograph" }],
   },
-  twitter: { card: "summary_large_image", title: "Story by Kopi", description: "Story-driven wedding photography and films, honestly observed.", images: ["/images/hero-courtyard.png"] },
+  twitter: { card: "summary_large_image", title: "Story by Kopi", description: "Story-driven wedding photography and films, honestly observed.", images: ["/images/wedabi.jpg"] },
 };
 
 export const viewport: Viewport = { themeColor: "#171714", colorScheme: "light dark" };
